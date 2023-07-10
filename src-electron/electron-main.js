@@ -10,6 +10,7 @@ import setUUID from './fn/setUuid'
 
 import './ipc'
 import './menu'
+import './web/io'
 // global variables
 global.pStatus = pStatus
 global.pTimes = pTimes

@@ -9,7 +9,6 @@ import {
 onMounted(async () => {
   pCallback(vp.value)
   await fnGetAudioDevioces()
-  console.log('video player mounted successfully')
 })
 </script>
 
