@@ -9,7 +9,7 @@ import updateSetupFromDb from './fn/updateSetupFromDb'
 import setUUID from './fn/setUuid'
 
 import './ipc'
-
+import './menu'
 // global variables
 global.pStatus = pStatus
 global.pTimes = pTimes

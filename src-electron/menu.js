@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { app, Menu, BrowserWindow as bw } from 'electron'
-import { openFileDialog } from '../functions/files'
+import { openFileDialog } from './fn/files'
 
 const isMac = process.platform === 'darwin'
 

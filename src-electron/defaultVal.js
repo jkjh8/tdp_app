@@ -7,7 +7,10 @@ const pStatus = {
   file: {
     type: ''
   },
-  status: {},
+  status: {
+    status: '',
+    playBtn: false
+  },
   playlist: {
     name: '',
     list: []

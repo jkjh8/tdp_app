@@ -4,8 +4,8 @@ contextBridge.exposeInMainWorld('API', {
   onPromise: async (args) => {
     return await ipcRenderer.invoke('onPromise', { ...args })
   },
-  update: (args) => {
-    ipcRenderer.send('update', { ...args })
+  updateFromFE: (args) => {
+    ipcRenderer.send('updateFromFE', { ...args })
   },
   fileOpen: (fn) => {
     ipcRenderer.on('fileOpen', (e, ...args) => {
@@ -17,8 +17,8 @@ contextBridge.exposeInMainWorld('API', {
       fn(...args)
     })
   },
-  return: (fn) => {
-    ipcRenderer.on('return', (e, ...args) => {
+  updateFromBE: (fn) => {
+    ipcRenderer.on('updateFromBE', (e, ...args) => {
       fn(...args)
     })
   }

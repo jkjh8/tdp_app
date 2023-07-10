@@ -10,13 +10,14 @@ import {
   fnUpdateStatus,
   fnGetFirstStatus
 } from 'src/composables/useStatus'
+import { fnOpenFile } from 'src/composables/useCommand'
 
 onMounted(async () => {
-  API.update((args) => {
+  API.updateFromBE((args) => {
     fnUpdateStatus(args)
   })
   API.fileOpen((args) => {
-    console.log('open', args)
+    fnOpenFile(args)
   })
   fnGetFirstStatus(await API.onPromise({ command: 'getFirstStatus' }))
 })

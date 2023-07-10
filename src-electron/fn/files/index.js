@@ -5,7 +5,7 @@ import sizeOf from 'image-size'
 
 import logger from '/src-electron/logger'
 import db from '/src-electron/db'
-import { pStatus } from 'app/src-electron/defaultVal'
+import { pStatus } from '/src-electron/defaultVal'
 
 ffmpeg.setFfmpegPath(
   require('ffmpeg-static').replace('app.asar', 'app.asar.unpacked')
@@ -81,7 +81,7 @@ const openFile = async (filePath) => {
         pStatus.file.dimensions = sizeOf(filePath)
         break
     }
-    bw.fromId(1).webContents.send('open', pStatus)
+    bw.fromId(1).webContents.send('fileOpen', pStatus)
     // update current source file
     await db.update(
       { key: 'currentSrc' },
@@ -98,6 +98,7 @@ const openFile = async (filePath) => {
 const openFileDialog = async () => {
   try {
     const filePath = await getFileDialog()
+    console.log(filePath)
     await openFile(filePath[0])
   } catch (err) {
     logger.error(`open file dialog error: ${err}`)

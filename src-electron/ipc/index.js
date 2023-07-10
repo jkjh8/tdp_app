@@ -1,1 +1,2 @@
 import './onPromise'
+import './updateFromFE'

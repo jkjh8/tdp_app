@@ -8,7 +8,7 @@ const audioDevice = ref('default')
 //functions
 // update status returns
 const fnUpv = (args) => {
-  API.return(args)
+  API.updateFromFE({ ...args })
 }
 // get audio devices
 const fnGetAudioDevioces = async () => {
@@ -19,7 +19,7 @@ const fnGetAudioDevioces = async () => {
 
 // video player callback
 const pCallback = (obj) => {
-  obj.onplaying = (e) => {
+  obj.onplaying = () => {
     fnUpv({ type: 'playing', readyState: obj.readyState })
   }
   obj.onabort = () => {

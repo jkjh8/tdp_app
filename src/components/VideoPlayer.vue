@@ -6,9 +6,10 @@ import {
   pCallback
 } from 'src/composables/useVideoPlayer'
 
-onMounted(() => {
+onMounted(async () => {
   pCallback(vp.value)
-  fnGetAudioDevioces()
+  await fnGetAudioDevioces()
+  console.log('video player mounted successfully')
 })
 </script>
 
