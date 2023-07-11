@@ -11,4 +11,4 @@ server.listen(HTTP_PORT, () => {
   logger.info(`Web server listening on port ${HTTP_PORT}`)
 })
 
-export { io }
+export default io

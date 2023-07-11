@@ -10,10 +10,12 @@ import setUUID from './fn/setUuid'
 
 import './ipc'
 import './menu'
-import './web/io'
+import io from './web/io'
+
 // global variables
 global.pStatus = pStatus
 global.pTimes = pTimes
+global.io = io
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform()
 

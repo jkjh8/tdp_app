@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser'
 import httpLogger from 'morgan'
 import session from 'express-session'
 import logger from '/src-electron/logger'
+// set dot env
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 // quasar electron public folder
 const publicFolder = path.resolve(__dirname, process.env.QUASAR_PUBLIC_FOLDER)
