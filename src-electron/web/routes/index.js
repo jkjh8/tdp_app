@@ -8,3 +8,5 @@ const publicPath = path.resolve(__dirname, process.env.QUASAR_PUBLIC_FOLDER)
 router.get('/', (req, res, next) => {
   res.sendFile(path.join(publicPath, 'spa', 'index.html'))
 })
+
+export default router

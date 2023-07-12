@@ -5,6 +5,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import httpLogger from 'morgan'
 import session from 'express-session'
+import routes from './routes'
 import logger from '/src-electron/logger'
 // set dot env
 import * as dotenv from 'dotenv'
@@ -42,6 +43,8 @@ if (process.env.NODE_ENV === 'development') {
     })
   )
 }
+// routes
+web.use('/', routes)
 
 // static path for web
 web.use(express.static(path.join(publicFolder, 'spa')))
