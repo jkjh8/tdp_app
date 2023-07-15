@@ -10,7 +10,7 @@ import setUUID from './fn/setUuid'
 
 import './ipc'
 import './menu'
-import io from './web/io'
+import { io, fnStartServer } from './web/io'
 
 // global variables
 global.pStatus = pStatus
@@ -35,6 +35,8 @@ async function createWindow() {
   await updateSetupFromDb()
   // check and update UUID
   await setUUID()
+  // start web server from specified port number
+  fnStartServer(pStatus.webport)
 
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon

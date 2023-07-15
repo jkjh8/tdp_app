@@ -1,6 +1,7 @@
 import { ipcMain, BrowserWindow as bw } from 'electron'
 import { pStatus, pTimes } from '/src-electron/defaultVal'
 import logger from '/src-electron/logger'
+import { io } from '/src-electron/web/io'
 
 ipcMain.on('updateFromFE', async (e, args) => {
   switch (args.type) {
@@ -67,6 +68,7 @@ const upv = (args) => {
     }
   }
   bw.fromId(1).webContents.send('updateFromBE', pStatus)
+  io.emit('pStatus', pStatus)
 }
 
 const upt = (args) => {
@@ -75,4 +77,5 @@ const upt = (args) => {
       pTimes[key] = args[key]
     }
   }
+  io.emit('pTimes', pTimes)
 }

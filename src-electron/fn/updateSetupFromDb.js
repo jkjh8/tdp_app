@@ -40,6 +40,9 @@ export default async function () {
       case 'bgColor':
         pStatus.bgColor = setupVal[i].value
         break
+      case 'webport':
+        pStatus.webport = setupVal[i].value
+        break
     }
   }
 }

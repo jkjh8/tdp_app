@@ -4,6 +4,7 @@ const pStatus = {
   name: '',
   ipaddress: '',
   macaddress: '',
+  webport: 3030,
   file: {
     type: ''
   },
