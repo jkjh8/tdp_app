@@ -6,7 +6,9 @@ const pStatus = {
   macaddress: '',
   webport: 3030,
   file: {
-    type: ''
+    type: '',
+    name: '',
+    size: 0
   },
   status: {
     status: '',

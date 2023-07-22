@@ -8,17 +8,17 @@ const io = new Server(httpServer)
 
 // set io namespace
 const ui = io.of('/ui')
-const server = io.of('/server')
+const controlserver = io.of('/server')
 
 ui.on('connection', (socket) => {
   logger.info(`socket.io connected ui : ${socket.id}`)
-
+  socket.emit('pStatus', pStatus)
   socket.on('disconnect', () => {
     logger.info(`socket.io disconnected ui : ${socket.id}`)
   })
 })
 
-server.on('connection', (socket) => {
+controlserver.on('connection', (socket) => {
   logger.info(`socket.io connected server : ${socket.id}`)
 
   socket.on('disconnect', () => {
@@ -37,4 +37,4 @@ const fnStartServer = (HTTP_PORT) => {
   }
 }
 
-export { io, ui, server, httpServer, fnStartServer }
+export { io, ui, controlserver, httpServer, fnStartServer }
