@@ -7,7 +7,9 @@ import { pStatus, pTimes } from './defaultVal'
 import { setLocalFileProtocol } from './fn/fileProtocols'
 import updateSetupFromDb from './fn/updateSetupFromDb'
 import setUUID from './fn/setUuid'
+import getMacAddress from './fn/getNICs'
 
+// inclutes
 import './ipc'
 import './menu'
 import { io, fnStartServer } from './web/io'
@@ -37,6 +39,11 @@ async function createWindow() {
   await setUUID()
   // start web server from specified port number
   fnStartServer(pStatus.webport)
+  try {
+    console.log(await getMacAddress())
+  } catch (error) {
+    console.error(error)
+  }
 
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon

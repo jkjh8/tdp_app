@@ -1,6 +1,7 @@
 import web from '../web'
 import http from 'http'
 import { Server } from 'socket.io'
+import { fnPCommands } from './commands'
 import logger from '/src-electron/logger'
 
 const httpServer = http.createServer(web)
@@ -12,9 +13,15 @@ const controlserver = io.of('/server')
 
 ui.on('connection', (socket) => {
   logger.info(`socket.io connected ui : ${socket.id}`)
+  // send status at connected socket
   socket.emit('pStatus', pStatus)
+  // disconnect socket
   socket.on('disconnect', () => {
     logger.info(`socket.io disconnected ui : ${socket.id}`)
+  })
+  // player command received
+  socket.on('pCommand', (args) => {
+    fnPCommands(args)
   })
 })
 
