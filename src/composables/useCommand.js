@@ -24,4 +24,10 @@ const fnOpenFile = (args) => {
   }
 }
 
-export { fnOpenFile }
+const fnPCommands = (obj, args) => {
+  switch (args.command) {
+    case 'play':
+      break
+  }
+}
+export { fnOpenFile, fnPCommands }
