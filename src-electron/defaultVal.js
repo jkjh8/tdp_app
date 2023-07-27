@@ -2,8 +2,7 @@ const pStatus = {
   mode: 'single',
   uuid: '',
   name: '',
-  ipaddress: '',
-  macaddress: '',
+  nics: [],
   webport: 3030,
   file: {
     type: '',

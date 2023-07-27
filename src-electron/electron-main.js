@@ -8,6 +8,7 @@ import { setLocalFileProtocol } from './fn/fileProtocols'
 import updateSetupFromDb from './fn/updateSetupFromDb'
 import setUUID from './fn/setUuid'
 import getMacAddress from './fn/getNICs'
+import { initMulticast, setMulticastInterval } from './multicast'
 
 // inclutes
 import './ipc'
@@ -33,18 +34,21 @@ try {
 let mainWindow
 
 async function createWindow() {
-  // update valiables
-  await updateSetupFromDb()
-  // check and update UUID
-  await setUUID()
-  // start web server from specified port number
-  fnStartServer(pStatus.webport)
+  // initialize app data
   try {
-    console.log(await getMacAddress())
+    // update valiables
+    await updateSetupFromDb()
+    // check and update UUID
+    await setUUID()
+    // start web server from specified port number
+    fnStartServer(pStatus.webport)
+    // get nics info
+    pStatus.nics = await getMacAddress()
   } catch (error) {
     console.error(error)
   }
 
+  // init main window
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
     width: 1000,
@@ -77,6 +81,9 @@ async function createWindow() {
   logger.info('APP started')
   // local protocol load
   setLocalFileProtocol()
+  // start multicast to pStatus
+  initMulticast()
+  setMulticastInterval()
 }
 
 app.whenReady().then(createWindow)
