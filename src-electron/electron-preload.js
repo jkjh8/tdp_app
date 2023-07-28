@@ -12,8 +12,8 @@ contextBridge.exposeInMainWorld('API', {
       fn(...args)
     })
   },
-  pCommnad: (fn) => {
-    ipcRenderer.on('pCommand', (e, ...args) => {
+  pCommands: (fn) => {
+    ipcRenderer.on('pCommands', (e, ...args) => {
       fn(...args)
     })
   },

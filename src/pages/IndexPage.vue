@@ -10,15 +10,16 @@ import {
   fnUpdateStatus,
   fnGetFirstStatus
 } from 'src/composables/useStatus'
-import { fnOpenFile } from 'src/composables/useCommand'
+import { fnOpenFile, fnPCommands } from 'src/composables/useCommand'
 
 onMounted(async () => {
-  API.updateFromBE((args) => {
-    fnUpdateStatus(args)
+  API.updateFromBE((args) => fnUpdateStatus(args))
+  API.fileOpen((args) => fnOpenFile(args))
+  API.pCommands((args) => {
+    console.log('pcommands: ' + args)
+    fnPCommands(args)
   })
-  API.fileOpen((args) => {
-    fnOpenFile(args)
-  })
+  // get first start values and functions
   fnGetFirstStatus(await API.onPromise({ command: 'getFirstStatus' }))
 })
 </script>

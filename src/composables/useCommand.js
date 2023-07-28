@@ -4,6 +4,7 @@ import { vp } from 'src/composables/useVideoPlayer'
 import { imgSource } from 'src/composables/useImage'
 
 const fnOpenFile = (args) => {
+  console.log('Open file', args)
   try {
     switch (args.file.type) {
       case 'video':
@@ -24,9 +25,14 @@ const fnOpenFile = (args) => {
   }
 }
 
-const fnPCommands = (obj, args) => {
+const fnPCommands = (args) => {
+  console.log(args)
   switch (args.command) {
     case 'play':
+      vp.value.play()
+      break
+    case 'pause':
+      vp.value.pause()
       break
   }
 }
