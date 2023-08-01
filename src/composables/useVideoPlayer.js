@@ -13,8 +13,10 @@ const fnUpv = (args) => {
 // get audio devices
 const fnGetAudioDevioces = async () => {
   const devices = await navigator.mediaDevices.enumerateDevices()
-  audioDevices.value = devices.find((deivce) => deivce.kind === 'audiooutput')
-  fnUpv({ type: 'updateAudioDevices', list: audioDevice.value })
+  console.log(devices)
+  audioDevices.value = devices.filter((deivce) => deivce.kind === 'audiooutput')
+  console.log(audioDevices.value)
+  fnUpv({ type: 'devices', list: JSON.stringify(audioDevices.value) })
 }
 
 // video player callback

@@ -1,7 +1,9 @@
 import { ipcMain, BrowserWindow as bw } from 'electron'
-import { pStatus, pTimes } from '/src-electron/defaultVal'
-import logger from '/src-electron/logger'
+import db from '/src-electron/db'
 import { ui } from '/src-electron/web/io'
+import logger from '/src-electron/logger'
+
+import { pStatus, pTimes } from '/src-electron/defaultVal'
 
 ipcMain.on('updateFromFE', async (e, args) => {
   switch (args.type) {
@@ -47,14 +49,24 @@ ipcMain.on('updateFromFE', async (e, args) => {
       // })
       break
     case 'devices':
-      pStatus.device.audiodevicelist = args.devices
+      pStatus.device.audiodevicelist = JSON.parse(args.list)
       // io.emit('devices', args.devices)
       break
     case 'device':
       pStatus.device.audiocurrentdevice = args.device
       // io.emit('device', { device: args.device })
       break
+    case 'windowsize':
+      pStatus.device.height = args.height
+      pStatus.device.width = args.width
+      await db.update(
+        { key: 'windowSize' },
+        { $set: { height: args.height, width: args.width } },
+        { upsert: true }
+      )
+      break
     default:
+      console.log('ipc default', args)
       // upv(args)
       // logger.info(args.type)
       break

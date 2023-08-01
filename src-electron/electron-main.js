@@ -51,8 +51,8 @@ async function createWindow() {
   // init main window
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
-    width: 1000,
-    height: 600,
+    width: pStatus.device.width ? pStatus.device.width : 1000,
+    height: pStatus.device.heigth ? pStatus.device.height : 600,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
@@ -61,7 +61,7 @@ async function createWindow() {
       preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD)
     }
   })
-
+  logger.info(`Window Size: ${pStatus.device.width} x ${pStatus.device.height}`)
   mainWindow.loadURL(process.env.APP_URL)
 
   if (process.env.DEBUGGING) {
