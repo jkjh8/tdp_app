@@ -9,8 +9,8 @@ import {
 const fnUpdateWindowSize = () => {
   API.updateFromFE({
     type: 'windowsize',
-    height: window.innerHeight,
-    width: window.innerWidth
+    height: window.outerHeight,
+    width: window.outerWidth
   })
 }
 
