@@ -14,4 +14,15 @@ const fnPause = () => {
   bw.fromId(1).webContents.send('pCommands', { command: 'pause' })
 }
 
-export { fnPlay, fnPause }
+const fnSeek = (time) => {
+  bw.fromId(1).webContents.send('pCommands', { command: 'seek', time: time })
+}
+
+const fnPanning = (value) => {
+  bw.fromId(1).webContents.send('pCommands', {
+    command: 'panning',
+    value: value
+  })
+}
+
+export { fnPlay, fnPause, fnSeek, fnPanning }

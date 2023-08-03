@@ -34,6 +34,16 @@ const fnPCommands = (args) => {
     case 'pause':
       vp.value.pause()
       break
+    case 'panning':
+      if (args.value === 'start') {
+        vp.value.pause()
+      } else {
+        vp.value.play()
+      }
+      break
+    case 'seek':
+      vp.value.currentTime = args.time
+      break
   }
 }
 export { fnOpenFile, fnPCommands }

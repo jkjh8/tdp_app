@@ -1,6 +1,6 @@
 import { pStatus } from '/src-electron/defaultVal'
 import { openFile } from '/src-electron/fn/files'
-import { fnPlay, fnPause } from '/src-electron/fn/player'
+import { fnPlay, fnPause, fnSeek, fnPanning } from '/src-electron/fn/player'
 import logger from '/src-electron/logger'
 
 const fnPCommands = (args) => {
@@ -14,6 +14,12 @@ const fnPCommands = (args) => {
       break
     case 'pause':
       fnPause()
+      break
+    case 'seek':
+      fnSeek(args.time)
+      break
+    case 'panning':
+      fnPanning(args.value)
       break
     default:
       console.log('pCommmands: ', JSON.stringify(args))

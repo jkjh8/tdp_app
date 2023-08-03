@@ -67,7 +67,7 @@ ipcMain.on('updateFromFE', async (e, args) => {
       break
     default:
       console.log('ipc default', args)
-      // upv(args)
+      upv(args)
       // logger.info(args.type)
       break
   }
