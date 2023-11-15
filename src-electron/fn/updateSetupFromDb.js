@@ -43,6 +43,9 @@ export default async function () {
       case 'webport':
         pStatus.webport = setupVal[i].value
         break
+      case 'startatfullscreen':
+        pStatus.startatfullscreen = setupVal[i].value
+        break
     }
   }
 }

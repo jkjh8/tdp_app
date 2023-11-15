@@ -24,6 +24,7 @@ const pStatus = {
     height: 600
   },
   fullscreen: false,
+  startatfullscreen: false,
   showlogo: true,
   bgColor: '#fff',
   recentlyFile: []

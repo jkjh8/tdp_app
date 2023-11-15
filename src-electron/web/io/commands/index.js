@@ -1,6 +1,13 @@
 import { pStatus } from '/src-electron/defaultVal'
 import { openFile } from '/src-electron/fn/files'
-import { fnPlay, fnPause, fnSeek, fnPanning } from '/src-electron/fn/player'
+import {
+  fnPlay,
+  fnPause,
+  fnSeek,
+  fnPanning,
+  fnToggleFullscreen,
+  fnSetFullscreen
+} from '/src-electron/fn/player'
 import logger from '/src-electron/logger'
 
 const fnPCommands = (args) => {
@@ -20,6 +27,12 @@ const fnPCommands = (args) => {
       break
     case 'panning':
       fnPanning(args.value)
+      break
+    case 'togglefullscreen':
+      fnToggleFullscreen()
+      break
+    case 'fullscreen':
+      fnSetFullscreen(args.value)
       break
     default:
       console.log('pCommmands: ', JSON.stringify(args))

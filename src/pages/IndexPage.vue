@@ -17,7 +17,7 @@ onMounted(async () => {
 
 <template>
   <q-page class="flex flex-center">
-    <ShowLogo v-show="pMode === 'logo'" class="fw" />
+    <ShowLogo v-show="pMode === 'logo' || pMode === 'audio'" class="fw" />
     <VideoPlayer v-show="pMode === 'video'" class="fw" />
     <ShowImg v-show="pMode === 'image'" class="fw" />
   </q-page>

@@ -44,6 +44,12 @@ const fnPCommands = (args) => {
     case 'seek':
       vp.value.currentTime = args.time
       break
+    case 'toggleFullscreen':
+      console.log('toggle fullscreen')
+      break
+    case 'setFullscreen':
+      console.log('fullscreen', args.value)
+      break
   }
 }
 export { fnOpenFile, fnPCommands }

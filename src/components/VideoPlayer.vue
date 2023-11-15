@@ -13,7 +13,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <video ref="vp" controls />
+  <video ref="vp" />
 </template>
 
 <style scoped></style>

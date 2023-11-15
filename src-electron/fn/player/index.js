@@ -1,5 +1,8 @@
 import { BrowserWindow as bw } from 'electron'
 import { pStatus } from '/src-electron/defaultVal'
+import db from '/src-electron/db'
+import { ui } from '/src-electron/web/io'
+import updateSetupFromDb from '../updateSetupFromDb'
 
 const fnPlay = () => {
   switch (pStatus.file.type) {
@@ -25,4 +28,46 @@ const fnPanning = (value) => {
   })
 }
 
-export { fnPlay, fnPause, fnSeek, fnPanning }
+const fnToggleFullscreen = () => {
+  bw.fromId(1).webContents.send('pCommands', { command: 'toggleFullscreen' })
+}
+
+const fnSetFullscreen = async (value) => {
+  bw.fromId(1).webContents.send('pCommands', {
+    command: 'setFullscreen',
+    value: value
+  })
+  await db.update({ key: 'fullscreen' }, { $set: { value } }, { upsert: true })
+  await updateSetupFromDb()
+  ui.emit('pStatus', { ...pStatus })
+  bw.fromId(1).setFullScreen(value)
+}
+
+const fnSetLogo = async (value) => {
+  return await db.update(
+    { key: 'showlogo' },
+    { $set: { value: value } },
+    { upsert: true }
+  )
+}
+
+const fnStartAtFullscreen = async (value) => {
+  await db.update(
+    { key: 'startatfullscreen' },
+    { $set: { value: value } },
+    { upsert: true }
+  )
+  await updateSetupFromDb()
+  ui.emit('pStatus', { ...pStatus })
+}
+
+export {
+  fnPlay,
+  fnPause,
+  fnSeek,
+  fnPanning,
+  fnToggleFullscreen,
+  fnSetLogo,
+  fnStartAtFullscreen,
+  fnSetFullscreen
+}
