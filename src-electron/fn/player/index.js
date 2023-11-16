@@ -33,10 +33,10 @@ const fnToggleFullscreen = () => {
 }
 
 const fnSetFullscreen = async (value) => {
-  bw.fromId(1).webContents.send('pCommands', {
-    command: 'setFullscreen',
-    value: value
-  })
+  // bw.fromId(1).webContents.send('pCommands', {
+  //   command: 'setFullscreen',
+  //   value: value
+  // })
   await db.update({ key: 'fullscreen' }, { $set: { value } }, { upsert: true })
   await updateSetupFromDb()
   ui.emit('pStatus', { ...pStatus })

@@ -13,6 +13,7 @@ import getMacAddress from './fn/getNICs'
 import './ipc'
 import './menu'
 import { io, fnStartServer } from './web/io'
+import { fnSetFullscreen } from '/src-electron/fn/player'
 
 // global variables
 global.pStatus = pStatus
@@ -76,10 +77,25 @@ async function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  mainWindow.on('enter-full-screen', () => {
+    if (platform !== 'darwin') {
+      mainWindow.setMenuBarVisibility(false)
+    }
+  })
+
+  mainWindow.on('leave-full-screen', () => {
+    if (platform !== 'darwin') {
+      mainWindow.setMenuBarVisibility(true)
+    }
+  })
 
   logger.info('APP started')
   // local protocol load
   setLocalFileProtocol()
+  // start at fullscreen
+  if (pStatus.startatfullscreen) {
+    mainWindow.setFullscreen(true)
+  }
 }
 
 app.whenReady().then(createWindow)
