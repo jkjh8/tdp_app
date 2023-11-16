@@ -2,6 +2,7 @@ import { ipcMain, BrowserWindow as bw } from 'electron'
 import db from '/src-electron/db'
 import { ui } from '/src-electron/web/io'
 import logger from '/src-electron/logger'
+import { fnPlay } from '/src-electron/fn/player'
 
 import { pStatus, pTimes } from '/src-electron/defaultVal'
 
@@ -47,6 +48,12 @@ ipcMain.on('updateFromFE', async (e, args) => {
       //   command: 'ended',
       //   mode: pStatus.status.status
       // })
+      if (pStatus.showlogo) {
+        bw.fromId(1).webContents.send('pCommands', {
+          command: 'mode',
+          value: 'logo'
+        })
+      }
       break
     case 'devices':
       pStatus.device.audiodevicelist = JSON.parse(args.list)
@@ -64,6 +71,11 @@ ipcMain.on('updateFromFE', async (e, args) => {
         { $set: { height: args.height, width: args.width } },
         { upsert: true }
       )
+      break
+    case 'oncanplaythrough':
+      if (pStatus.loadandplay) {
+        fnPlay()
+      }
       break
     default:
       console.log('ipc default', args)

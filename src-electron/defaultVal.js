@@ -27,7 +27,8 @@ const pStatus = {
   startatfullscreen: false,
   showlogo: true,
   bgColor: '#fff',
-  recentlyFile: []
+  recentlyFile: [],
+  loadandplay: false
 }
 
 const pTimes = {

@@ -50,6 +50,12 @@ const fnPCommands = (args) => {
     case 'setFullscreen':
       console.log('fullscreen', args.value)
       break
+    case 'mode':
+      pMode.value = args.value
+      break
+    case 'device':
+      vp.value.setSinkId(args.value)
+      break
   }
 }
 export { fnOpenFile, fnPCommands }

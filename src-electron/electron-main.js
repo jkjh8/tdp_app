@@ -8,7 +8,6 @@ import { setLocalFileProtocol } from './fn/fileProtocols'
 import updateSetupFromDb from './fn/updateSetupFromDb'
 import setUUID from './fn/setUuid'
 import getMacAddress from './fn/getNICs'
-import { initMulticast, setMulticastInterval } from './multicast'
 
 // inclutes
 import './ipc'
@@ -81,9 +80,6 @@ async function createWindow() {
   logger.info('APP started')
   // local protocol load
   setLocalFileProtocol()
-  // start multicast to pStatus
-  initMulticast()
-  setMulticastInterval()
 }
 
 app.whenReady().then(createWindow)

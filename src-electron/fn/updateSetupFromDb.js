@@ -1,4 +1,5 @@
 import db from '/src-electron/db'
+import { BrowserWindow as bw } from 'electron'
 import { pStatus } from '../defaultVal'
 
 export default async function () {
@@ -45,6 +46,12 @@ export default async function () {
         break
       case 'startatfullscreen':
         pStatus.startatfullscreen = setupVal[i].value
+        break
+      case 'loadandplay':
+        pStatus.loadandplay = setupVal[i].value
+        break
+      case 'device':
+        pStatus.device.audiocurrentdevice = setupVal[i].value
         break
     }
   }
