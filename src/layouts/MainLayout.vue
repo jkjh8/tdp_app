@@ -1,10 +1,15 @@
 <script setup>
 import { onMounted } from 'vue'
+import { useQuasar } from 'quasar'
 import {
   pStatus,
   fnUpdateStatus,
   fnGetFirstStatus
 } from 'src/composables/useStatus'
+
+import AboutDialog from 'src/components/dialogs/helpPopup'
+
+const $q = useQuasar()
 
 const fnUpdateWindowSize = () => {
   API.updateFromFE({
@@ -15,6 +20,16 @@ const fnUpdateWindowSize = () => {
 }
 
 onMounted(async () => {
+  API.help((command) => {
+    if (command.command === 'help') {
+      $q.dialog({
+        component: AboutDialog,
+        componentProps: {
+          pStatus: pStatus.value
+        }
+      })
+    }
+  })
   window.addEventListener('resize', () => fnUpdateWindowSize())
   // get first start values and functions
   fnGetFirstStatus(await API.onPromise({ command: 'getFirstStatus' }))

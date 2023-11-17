@@ -39,8 +39,15 @@ controlserver.on('connection', (socket) => {
 // start server listening
 const fnStartServer = (HTTP_PORT) => {
   try {
-    httpServer.listen(HTTP_PORT, () => {
-      logger.info(`Web server listening on port ${HTTP_PORT}`)
+    let PORT = null
+    if (HTTP_PORT === undefined || HTTP_PORT === null) {
+      PORT = 3030
+    } else {
+      PORT = HTTP_PORT
+    }
+
+    httpServer.listen(PORT, () => {
+      logger.info(`Web server listening on port ${PORT}`)
     })
   } catch (error) {
     logger.error(`Web server open error: ${error}`)

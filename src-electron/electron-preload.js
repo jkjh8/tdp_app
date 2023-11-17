@@ -21,5 +21,10 @@ contextBridge.exposeInMainWorld('API', {
     ipcRenderer.on('updateFromBE', (e, ...args) => {
       fn(...args)
     })
+  },
+  help: (fn) => {
+    ipcRenderer.on('help', (e, ...args) => {
+      fn(...args)
+    })
   }
 })

@@ -1,6 +1,7 @@
 import db from '/src-electron/db'
 import { BrowserWindow as bw } from 'electron'
 import { pStatus } from '../defaultVal'
+import { ui } from '/src-electron/web/io'
 
 export default async function () {
   const setupVal = await db.find()
@@ -53,6 +54,10 @@ export default async function () {
       case 'device':
         pStatus.device.audiocurrentdevice = setupVal[i].value
         break
+      case 'controlport':
+        pStatus.controlport = setupVal[i].value
+        break
     }
   }
+  ui.emit('pStatus', { ...pStatus })
 }

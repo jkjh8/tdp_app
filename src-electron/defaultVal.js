@@ -4,6 +4,7 @@ const pStatus = {
   name: '',
   nics: [],
   webport: 3030,
+  controlport: 4040,
   file: {
     type: '',
     name: '',

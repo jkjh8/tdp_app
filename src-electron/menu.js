@@ -34,7 +34,13 @@ const template = [
         click: async () => await openFileDialog()
       },
       { type: 'separator' },
-      { role: 'quit', accelerator: 'CommandOrControl+f4' }
+      {
+        label: 'Quit',
+        accelerator: 'CommandOrControl+f4',
+        click: () => {
+          app.quit()
+        }
+      }
     ]
   },
   // { role: 'editMenu' }
@@ -95,6 +101,13 @@ const template = [
   {
     role: 'help',
     submenu: [
+      {
+        label: 'About',
+        accelerator: 'F1',
+        click: () => {
+          bw.fromId(1).webContents.send('help', { command: 'help' })
+        }
+      },
       {
         label: 'Learn More',
         click: async () => {

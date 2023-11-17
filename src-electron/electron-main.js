@@ -8,6 +8,7 @@ import { setLocalFileProtocol } from './fn/fileProtocols'
 import updateSetupFromDb from './fn/updateSetupFromDb'
 import setUUID from './fn/setUuid'
 import getMacAddress from './fn/getNICs'
+import { initControlServer } from './tcp'
 
 // inclutes
 import './ipc'
@@ -42,6 +43,8 @@ async function createWindow() {
     await setUUID()
     // start web server from specified port number
     fnStartServer(pStatus.webport)
+    // start control tcp server
+    initControlServer(pStatus.controlport)
     // get nics info
     pStatus.nics = await getMacAddress()
   } catch (error) {
@@ -94,7 +97,7 @@ async function createWindow() {
   setLocalFileProtocol()
   // start at fullscreen
   if (pStatus.startatfullscreen) {
-    mainWindow.setFullscreen(true)
+    fnSetFullscreen(true)
   }
 }
 

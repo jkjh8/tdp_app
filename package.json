@@ -1,8 +1,8 @@
 {
-  "name": "tdp-app",
+  "name": "MediaPlayer",
   "version": "0.0.1",
-  "description": "electron app video player",
-  "productName": "electron app tdp",
+  "description": "app video player",
+  "productName": "Media Player",
   "author": "jkjh8 <jkjh82@naver.com>",
   "private": true,
   "scripts": {

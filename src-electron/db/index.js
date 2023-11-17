@@ -21,4 +21,9 @@ try {
   logger.error(`DB not initialized ${err}`)
 }
 
+async function dbUpdate(key, value) {
+  return await db.update({ key }, { $set: { value } }, { upsert: true })
+}
+
 export default db
+export { dbUpdate }
