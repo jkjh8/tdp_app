@@ -6,6 +6,7 @@ import { imgSource } from 'src/composables/useImage'
 const fnOpenFile = (args) => {
   console.log('Open file', args)
   try {
+    vp.value.pause()
     switch (args.file.type) {
       case 'video':
         pMode.value = 'video'
@@ -18,6 +19,7 @@ const fnOpenFile = (args) => {
       case 'image':
         pMode.value = 'image'
         imgSource.value = `local://${args.file.src}`
+
         break
     }
   } catch (err) {
@@ -33,6 +35,10 @@ const fnPCommands = (args) => {
       break
     case 'pause':
       vp.value.pause()
+      break
+    case 'stop':
+      vp.value.pause()
+      pMode.value = 'logo'
       break
     case 'panning':
       if (args.value === 'start') {

@@ -10,11 +10,22 @@ const fnPlay = () => {
     case 'video':
       bw.fromId(1).webContents.send('pCommands', { command: 'play' })
       break
+    case 'image':
+      pStatus.playBtn = true
+      ui.emit('pStatus', { ...pStatus })
+      break
   }
 }
 
 const fnPause = () => {
   bw.fromId(1).webContents.send('pCommands', { command: 'pause' })
+}
+
+const fnStop = () => {
+  bw.fromId(1).webContents.send('pCommands', { command: 'stop' })
+  pStatus.status.playBtn = false
+  pStatus.status.status = ''
+  ui.emit('pStatus', { ...pStatus })
 }
 
 const fnSeek = (time) => {
@@ -64,6 +75,7 @@ const fnStartAtFullscreen = async (value) => {
 export {
   fnPlay,
   fnPause,
+  fnStop,
   fnSeek,
   fnPanning,
   fnToggleFullscreen,

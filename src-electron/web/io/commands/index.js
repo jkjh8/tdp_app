@@ -2,6 +2,7 @@ import { pStatus } from '/src-electron/defaultVal'
 import { openFile } from '/src-electron/fn/files'
 import {
   fnPlay,
+  fnStop,
   fnPause,
   fnSeek,
   fnPanning,
@@ -21,6 +22,9 @@ const fnPCommands = (args) => {
       break
     case 'pause':
       fnPause()
+      break
+    case 'stop':
+      fnStop()
       break
     case 'seek':
       fnSeek(args.time)
