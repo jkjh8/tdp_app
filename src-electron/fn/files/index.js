@@ -7,6 +7,8 @@ import logger from '/src-electron/logger'
 import db from '/src-electron/db'
 import { pStatus } from '/src-electron/defaultVal'
 
+import { mediaFolder } from '../folders'
+
 ffmpeg.setFfmpegPath(
   require('ffmpeg-static').replace('app.asar', 'app.asar.unpacked')
 )
@@ -48,6 +50,10 @@ const getMeidaFileMetaData = (file) => {
     pStatus.file.meta = meta
     bw.fromId(1).webContents.send('status', pStatus)
   })
+}
+
+const openFileSimple = async (file) => {
+  await openFile(path.join(mediaFolder, file))
 }
 
 const openFile = async (filePath) => {
@@ -121,5 +127,6 @@ export {
   getMeidaFileMetaData,
   openFile,
   openFileDialog,
-  addRecentlyFile
+  addRecentlyFile,
+  openFileSimple
 }

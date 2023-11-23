@@ -33,4 +33,56 @@ function getFileNames() {
   return mediaFiles.map((e) => e.base)
 }
 
-export { homeFolder, mediaFolder, getMediaFolder, getFileNames }
+function getVideoFilesName() {
+  const mediaFiles = getMediaFolder()
+  const videoFiles = []
+  for (let item of mediaFiles) {
+    switch (item.ext) {
+      case '.mp4':
+      case '.mkv':
+        videoFiles.push(item)
+        break
+    }
+  }
+  return videoFiles.map((e) => e.base)
+}
+
+function getAudioFilesName() {
+  const mediaFiles = getMediaFolder()
+  const audioFiles = []
+  for (let item of mediaFiles) {
+    switch (item.ext) {
+      case '.mp3':
+      case '.wav':
+      case '.asf':
+      case 'aac':
+        audioFiles.push(item)
+        break
+    }
+  }
+  return audioFiles.map((e) => e.base)
+}
+
+function getImageFilesName() {
+  const mediaFiles = getMediaFolder()
+  const imageFiles = []
+  for (let item of mediaFiles) {
+    switch (item.ext) {
+      case '.png':
+      case '.jpg':
+        imageFiles.push(item)
+        break
+    }
+  }
+  return imageFiles.map((e) => e.base)
+}
+
+export {
+  homeFolder,
+  mediaFolder,
+  getMediaFolder,
+  getFileNames,
+  getVideoFilesName,
+  getAudioFilesName,
+  getImageFilesName
+}
