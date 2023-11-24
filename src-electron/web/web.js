@@ -20,16 +20,16 @@ const web = express()
 web.use(express.json())
 web.use(express.urlencoded({ extended: false }))
 web.use(cookieParser())
-web.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true
-    }
-  })
-)
+// web.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       httpOnly: true
+//     }
+//   })
+// )
 
 // debug mode
 if (process.env.NODE_ENV === 'development') {
