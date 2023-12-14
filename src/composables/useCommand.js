@@ -32,6 +32,9 @@ const fnPCommands = (args) => {
   switch (args.command) {
     case 'play':
       vp.value.play()
+      if (pStatus.value.file.type === 'video') {
+        pMode.value = 'video'
+      }
       break
     case 'pause':
       vp.value.pause()

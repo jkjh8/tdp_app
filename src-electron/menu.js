@@ -71,14 +71,14 @@ const template = [
   {
     label: 'View',
     submenu: [
-      { role: 'reload' },
-      { role: 'forceReload' },
-      { role: 'toggleDevTools' },
-      { type: 'separator' },
-      { role: 'resetZoom' },
-      { role: 'zoomIn' },
-      { role: 'zoomOut' },
-      { type: 'separator' },
+      // { role: 'reload' },
+      // { role: 'forceReload' },
+      // { role: 'toggleDevTools' },
+      // { type: 'separator' },
+      // { role: 'resetZoom' },
+      // { role: 'zoomIn' },
+      // { role: 'zoomOut' },
+      // { type: 'separator' },
       { role: 'togglefullscreen' }
     ]
   },
@@ -107,14 +107,14 @@ const template = [
         click: () => {
           bw.fromId(1).webContents.send('help', { command: 'help' })
         }
-      },
-      {
-        label: 'Learn More',
-        click: async () => {
-          const { shell } = require('electron')
-          await shell.openExternal('https://electronjs.org')
-        }
       }
+      // {
+      //   label: 'Learn More',
+      //   click: async () => {
+      //     const { shell } = require('electron')
+      //     await shell.openExternal('https://electronjs.org')
+      //   }
+      // }
     ]
   }
 ]
