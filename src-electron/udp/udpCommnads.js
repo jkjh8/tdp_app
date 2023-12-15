@@ -22,18 +22,19 @@ function utf8StringToUtf16String(str) {
 function fnSendUdp(msg) {
   const client = dgram.createSocket('udp4')
   const message = Buffer.from(msg)
-  client.send(message, pStatus.udpsendport, pStatus.uspsendip, (err) => {
+  client.send(message, pStatus.udpsendport, pStatus.udpsendip, (err) => {
     if (err) {
       logger.error(`udp send error ${err}`)
     }
+    console.log('send udp', message, pStatus.udpsendport, pStatus.udpsendip)
     client.close()
   })
 }
 
 export default async function udpParser(command) {
   try {
-    console.log(command)
     const arr = command.toString().split(',')
+    console.log(arr)
     let files16 = []
     switch (arr[0]) {
       case 'getvideolist':
