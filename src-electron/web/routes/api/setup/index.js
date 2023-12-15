@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   try {
     res.status(200).json({ result: true, status: pStatus })
   } catch (error) {
-    logger.error(`web router setup ${error.message}`)
+    logger.error(`web router setup error ${error.message}`)
     res.status(500).json({ result: false, error })
   }
 })
@@ -46,7 +46,7 @@ router.put('/device', async (req, res) => {
     await updateSetupFromDb()
     res.status(200).json({ result: true, status: pStatus })
   } catch (error) {
-    logger.error(`web setup device ${error.message}`)
+    logger.error(`web setup device error ${error.message}`)
     res.status(500).json({ result: false, error })
   }
 })
@@ -58,7 +58,7 @@ router.put('/webport', async (req, res) => {
     await updateSetupFromDb()
     res.status(200).json({ result: true, status: pStatus })
   } catch (error) {
-    logger.error(`web port setup ${error.message}`)
+    logger.error(`web port setup error ${error.message}`)
     res.status(500).json({ result: false, error })
   }
 })
@@ -74,7 +74,47 @@ router.put('/tcp', async (req, res) => {
     await updateSetupFromDb()
     res.status(200).json({ result: true, status: pStatus })
   } catch (error) {
-    logger.error(`tcp port setup ${error.message}`)
+    logger.error(`tcp port setup error ${error.message}`)
+    res.status(500).json({ result: false, error })
+  }
+})
+
+router.put('/udp', async (req, res) => {
+  try {
+    const value = req.body.port
+    await db.update({ key: 'udpport' }, { $set: { value } }, { upsert: true })
+    await updateSetupFromDb()
+    res.status(200).json({ result: true, status: pStatus })
+  } catch (error) {
+    logger.error(`udp port setup error ${error.message}`)
+    res.status(500).json({ result: false, error })
+  }
+})
+
+router.put('/udpsendport', async (req, res) => {
+  try {
+    const value = req.body.port
+    await db.update(
+      { key: 'udpsendport' },
+      { $set: { value } },
+      { upsert: true }
+    )
+    await updateSetupFromDb()
+    res.status(200).json({ result: true, status: pStatus })
+  } catch (error) {
+    logger.error(`udpsendport setup error ${error.message}`)
+    res.status(500).json({ result: false, error })
+  }
+})
+
+router.put('/udpsendip', async (req, res) => {
+  try {
+    const value = req.body.ip
+    await db.update({ key: 'udpsendip' }, { $set: { value } }, { upsert: true })
+    await updateSetupFromDb()
+    res.status(200).json({ result: true, status: pStatus })
+  } catch (error) {
+    logger.error(`udpsend ip setup error ${error.message}`)
     res.status(500).json({ result: false, error })
   }
 })

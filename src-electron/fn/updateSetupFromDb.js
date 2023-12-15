@@ -45,6 +45,15 @@ export default async function () {
       case 'webport':
         pStatus.webport = setupVal[i].value
         break
+      case 'udpport':
+        pStatus.udpport = setupVal[i].value
+        break
+      case 'udpsendport':
+        pStatus.udpsendport = setupVal[i].value
+        break
+      case 'udpsendip':
+        pStatus.udpsendip = setupVal[i].value
+        break
       case 'startatfullscreen':
         pStatus.startatfullscreen = setupVal[i].value
         break

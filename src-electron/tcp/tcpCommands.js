@@ -36,6 +36,7 @@ function utf8StringToUtf16String(str) {
   }
   return utf16
 }
+
 export default async function tcpParser(command) {
   try {
     const arr = command.split(',')

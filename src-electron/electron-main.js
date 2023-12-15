@@ -9,6 +9,7 @@ import updateSetupFromDb from './fn/updateSetupFromDb'
 import setUUID from './fn/setUuid'
 import getMacAddress from './fn/getNICs'
 import { initControlServer } from './tcp'
+import { initUdpServer } from './udp'
 
 // inclutes
 import './ipc'
@@ -45,6 +46,8 @@ async function createWindow() {
     fnStartServer(pStatus.webport)
     // start control tcp server
     initControlServer(pStatus.controlport)
+    // start udp server
+    initUdpServer(pStatus.udpport)
     // get nics info
     pStatus.nics = await getMacAddress()
   } catch (error) {

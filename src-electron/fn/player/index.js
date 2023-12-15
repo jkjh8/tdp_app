@@ -3,6 +3,7 @@ import { pStatus } from '/src-electron/defaultVal'
 import db from '/src-electron/db'
 import { ui } from '/src-electron/web/io'
 import updateSetupFromDb from '../updateSetupFromDb'
+import { fnSendUdp } from '/src-electron/udp/udpCommnads'
 
 const fnPlay = () => {
   switch (pStatus.file.type) {
@@ -26,6 +27,7 @@ const fnStop = () => {
   pStatus.status.playBtn = false
   pStatus.status.status = ''
   ui.emit('pStatus', { ...pStatus })
+  fnSendUdp('stop')
 }
 
 const fnSeek = (time) => {

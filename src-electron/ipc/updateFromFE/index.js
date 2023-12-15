@@ -3,6 +3,7 @@ import db from '/src-electron/db'
 import { ui } from '/src-electron/web/io'
 import logger from '/src-electron/logger'
 import { fnPlay } from '/src-electron/fn/player'
+import { fnSendUdp } from '/src-electron/udp/udpCommnads'
 
 import { pStatus, pTimes } from '/src-electron/defaultVal'
 
@@ -54,6 +55,7 @@ ipcMain.on('updateFromFE', async (e, args) => {
           value: 'logo'
         })
       }
+      fnSendUdp('stop')
       break
     case 'devices':
       pStatus.device.audiodevicelist = JSON.parse(args.list)
