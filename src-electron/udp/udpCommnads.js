@@ -7,14 +7,14 @@ import { getVideoFilesName, getAudioFilesName } from '../fn/folders'
 import { openFileSimple } from '/src-electron/fn/files'
 import { fnPlay, fnStop } from '../fn/player'
 
-function dec2hex(dec, padding) {
-  return parseInt(dec, 10).toString(16).padStart(padding, '0')
+function dec2hex(dec) {
+  return parseInt(dec, 10).toString(16)
 }
 
 function utf8StringToUtf16String(str) {
   var utf16 = []
   for (var i = 0, strLen = str.length; i < strLen; i++) {
-    utf16.push(dec2hex(str.charCodeAt(i), 4))
+    utf16.push(`\x00${dec2hex(str.charCodeAt(i))}`)
   }
   return utf16.join('')
 }

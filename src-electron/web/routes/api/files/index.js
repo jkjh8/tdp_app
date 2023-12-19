@@ -29,9 +29,9 @@ const upload = multer({
 router.get('/', async (req, res) => {
   try {
     res.status(200).json({ files: getMediaFolder(), defaultpath: mediaFolder })
-  } catch (err) {
-    logger.error('Web file get error: ' + err)
-    res.status(500).json(err)
+  } catch (error) {
+    logger.error('Web file get error: ' + error)
+    res.status(500).json(error)
   }
 })
 
@@ -41,9 +41,9 @@ router.post('/upload', upload.any(), (req, res) => {
     const uploadedFiles = req.files.map((file) => file.originalname)
     logger.info(`update files: ${JSON.stringify(uploadedFiles)}`)
     res.status(200).json({ result: true, files: uploadedFiles })
-  } catch (err) {
-    logger.error('Web file upload error: ' + err)
-    res.status(500).json(err)
+  } catch (error) {
+    logger.error('Web file upload error: ' + error)
+    res.status(500).json(error)
   }
 })
 
@@ -54,10 +54,29 @@ router.delete('/', async (req, res) => {
       fs.rmSync(fullpath, { recursive: true })
     }
     res.status(200).json({ result: true })
-  } catch (er) {
-    logger.error('Web file delete error: ' + err)
-    res.status(500).json(err)
+  } catch (error) {
+    logger.error('Web file delete error: ' + error)
+    res.status(500).json(error)
   }
+})
+
+router.post('/rename', async (req, res) => {
+  const { fullpath, newname } = req.body
+  fs.rename(fullpath, path.join(mediaFolder, newname), function (err) {
+    if (err) {
+      logger.error('Web file rename error: ' + err)
+      res.status(500).json(err)
+    }
+    res.status(200).json({ result: true })
+  })
+  // try {
+  //   const { fullpath, newname } = req.body
+  //   await fs.renameSync(fullpath, path.join(mediaFolder, newname))
+  //   res.status(200).json({ result: true })
+  // } catch (error) {
+  //   logger.error('Web file rename error: ' + error)
+  //   res.status(500).json(error)
+  // }
 })
 
 export default router
