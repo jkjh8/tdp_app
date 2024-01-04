@@ -3,18 +3,22 @@ import { Buffer } from 'node:buffer'
 
 import { pStatus } from '/src-electron/defaultVal'
 import logger from '../logger'
-import { getVideoFilesName, getAudioFilesName } from '../fn/folders'
+import {
+  getFileNames,
+  getVideoFilesName,
+  getAudioFilesName
+} from '../fn/folders'
 import { openFileSimple } from '/src-electron/fn/files'
 import { fnPlay, fnStop } from '../fn/player'
 
 function dec2hex(dec) {
-  return parseInt(dec, 10).toString(16)
+  return parseInt(dec, 10).toString(16).padStart(4, '0').toUpperCase()
 }
 
 function utf8StringToUtf16String(str) {
   var utf16 = []
   for (var i = 0, strLen = str.length; i < strLen; i++) {
-    utf16.push(`\x00${dec2hex(str.charCodeAt(i))}`)
+    utf16.push(dec2hex(str.charCodeAt(i)))
   }
   return utf16.join('')
 }
@@ -37,6 +41,14 @@ export default async function udpParser(command) {
     console.log(arr)
     let files16 = []
     switch (arr[0]) {
+      case 'getfiles':
+        // let filename = getFileNames()
+        // for (let item of filename) {
+        //   files16.push(utf8StringToUtf16String(item))
+        //   fnSendUdp(`getlist,${files16.join(',')}`)
+        // }
+        fnSendUdp(`getlist,${getFileNames().join(',')}`)
+        break
       case 'getvideolist':
         fnSendUdp(`getvideolist,${getVideoFilesName().join(',')}`)
         break
