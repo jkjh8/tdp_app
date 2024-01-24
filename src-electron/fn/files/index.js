@@ -32,11 +32,12 @@ const getFileDialog = async () => {
           'bmp',
           'gif',
           'png',
-          'jpeg'
+          'jpeg',
+          'flac'
         ]
       },
       { name: 'Video', extensions: ['mp4', 'mkv', 'mov'] },
-      { name: 'Audio', extensions: ['mp3', 'wav'] },
+      { name: 'Audio', extensions: ['mp3', 'wav', 'flac'] },
       { name: 'Image', extensions: ['jpg', 'bmp', 'png', 'jpeg', 'gif'] },
       { name: 'All Files', extensions: ['*'] }
     ],
