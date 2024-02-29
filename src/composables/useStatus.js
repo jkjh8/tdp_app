@@ -15,7 +15,7 @@ const fnGetFirstStatus = (status) => {
   if (status.showlogo) {
     pMode.value = 'logo'
   }
-  bgColor.value = status.bgColor
+  // bgColor.value = status.bgColor
   fnUpdateStatus(status)
 }
 

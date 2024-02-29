@@ -23,7 +23,9 @@ router.post('/', async (req, res) => {
     await dbUpdate('showlogo', status.showlogo)
     await dbUpdate('startatfullscreen', status.startatfullscreen)
     await dbUpdate('loadandplay', status.loadandplay)
+    await dbUpdate('darkmode', status.darkmode)
     await updateSetupFromDb()
+    bw.fromId(1).webContents.send('updateFromBE', pStatus)
     res.status(200).json({ result: true, status: pStatus })
   } catch (error) {
     res.status(500).json({ result: false, error })

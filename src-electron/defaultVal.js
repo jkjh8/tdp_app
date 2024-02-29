@@ -8,6 +8,7 @@ const pStatus = {
   udpport: 12300,
   udpsendport: 9999,
   udpsendip: '127.0.0.1',
+  darkmode: false,
   file: {
     type: '',
     name: '',

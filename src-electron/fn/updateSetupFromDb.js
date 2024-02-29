@@ -66,7 +66,11 @@ export default async function () {
       case 'controlport':
         pStatus.controlport = setupVal[i].value
         break
+      case 'darkmode':
+        pStatus.darkmode = setupVal[i].value
+        break
     }
   }
   ui.emit('pStatus', { ...pStatus })
+  // bw.fromId(1).webContents.send('updateFromBE', pStatus)
 }
